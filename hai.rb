@@ -10,7 +10,6 @@ require 'models/quote'
 
 class Hai < Sinatra::Base
   register Mustache::Sinatra
-
   set :mustaches, 'views/'
   set :views, 'templates/'
   set :public, 'public/'
@@ -21,8 +20,8 @@ class Hai < Sinatra::Base
     DataMapper::Logger.new(STDOUT, :debug)
   end
 
-  use Rack::Auth::Basic do |password|
-    [password] == ['lulzmade']
+  use Rack::Auth::Basic do |username, password|
+    [username, password] == ['coeder', 'lulz']
   end
 
 
