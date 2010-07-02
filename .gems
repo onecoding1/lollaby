@@ -1,1 +1,4 @@
 sinatra
+mustache
+dm-core
+dm-migrations
