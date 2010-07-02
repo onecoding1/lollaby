@@ -6,7 +6,12 @@ require 'dm-migrations'
 $LOAD_PATH.unshift(dir = File.dirname(__FILE__)) unless $LOAD_PATH.include? dir = File.dirname(__FILE__)
 require 'models/quote'
 
+if File.exists? "quotes.db"
+  return true
 
+else
+  require "migrator"
+end
 
 class Hai < Sinatra::Base
   register Mustache::Sinatra
