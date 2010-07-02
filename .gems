@@ -1,5 +1,3 @@
 sinatra
-mustache
-dm-core
-dm-migrations
-dm-sqlite-adapter
+rdiscount
+haml

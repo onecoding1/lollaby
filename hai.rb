@@ -1,52 +1,60 @@
-require 'mustache/sinatra'
-require 'dm-core'
-require 'dm-migrations'
+require 'rubygems'
+require 'sinatra'
+require 'rdiscount'
+require 'haml'
 
+set :views, Sinatra::Application.root
+set :haml, :format => :html5
 
-$LOAD_PATH.unshift(dir = File.dirname(__FILE__)) unless $LOAD_PATH.include? dir = File.dirname(__FILE__)
-require 'models/quote'
-
-if File.exists? "quotes.db"
-  return true
-
-else
-  require "migrator"
+get '/' do
+  haml :view
 end
 
-class Hai < Sinatra::Base
-  register Mustache::Sinatra
-  set :mustaches, 'views/'
-  set :views, 'templates/'
-  set :public, 'public/'
-  set :environment, :production
-  configure do
-    db = "sqlite3://#{Dir.pwd}/quotes.db"
-    DataMapper.setup(:default, db.to_s)
-    DataMapper::Logger.new(STDOUT, :debug)
+class Quote
+
+  def self.all
+    Dir[Sinatra::Application.root+'/quotes/*'].
+    collect { |path| load(path) }.
+    compact. # ignore the ones that fail to load
+    sort_by { |q| q.date }.reverse
   end
 
-  use Rack::Auth::Basic do |username, password|
-    [username, password] == ['coeder', 'lulz']
+  class ParseError < StandardError ; end
+
+  def self.load(path)
+    id = File.basename(path)
+    begin
+      body, props = self.parse(File.read(path))
+      new(id, body, YAML.load(props))
+    rescue ParseError
+      $stderr.puts "can't parse quote at: #{path}"
+    end
   end
 
-
-  get '/' do
-    @quotes = Quote.all(:order => [:date.desc])
-    mustache :index
+  def self.parse(str)
+    match = str.match(/(.+?)---\n(.+)/m)
+    raise ParseError unless match
+    match.captures
   end
 
-  get '/new' do
-    mustache :new
+  def initialize(*args)
+    @id, @body, @props = args
   end
 
-  post '/' do
-    q = Quote.create(
-    :quote => params[:quote_body],
-    :user => params[:coeder],
-    :date => Time.now
-    )
-    q.save
+  attr_reader :id, :updated
 
-    redirect "/"
+  def to_s; RDiscount.new(@body).to_html end
+
+  def method_missing(*args)
+    return super unless args.size == 1
+    name = args.first.to_s[/(.+?)\??$/,1]
+    @props[name]
   end
+
+end
+
+helpers do
+
+  def quotes ; Quote.all end
+
 end
