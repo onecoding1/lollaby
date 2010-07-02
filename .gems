@@ -2,4 +2,4 @@ sinatra
 mustache
 dm-core
 dm-migrations
-sqlite_adapter
+dm-sqlite-adapter
