@@ -1,7 +1,7 @@
-require 'rubygems'
 require 'sinatra'
 require 'rdiscount'
 require 'haml'
+require 'yaml'
 
 set :views, Sinatra::Application.root
 set :haml, :format => :html5
@@ -58,3 +58,4 @@ helpers do
   def quotes ; Quote.all end
 
 end
+a = Quote.new
