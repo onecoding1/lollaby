@@ -10,8 +10,6 @@ class User
   property :salt, String, :default => ''
   property :email, String, :default => 'user@example.com', :format => :email_address
 
-  has n, :quotes
-
   attr_accessor :password
 
   def password=(keyphrase)
