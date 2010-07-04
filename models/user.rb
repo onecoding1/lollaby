@@ -3,29 +3,31 @@ require 'dm-validations'
 
 class User
   include DataMapper::Resource
-  
+
   property :id, Serial
-  property :username, String, :required => true, :unique => true
+  property :user, String, :required => true, :unique => true
   property :password, String, :required => true
   property :salt, String, :default => ''
   property :email, String, :default => 'user@example.com', :format => :email_address
 
+  has n, :quotes
+
   attr_accessor :password
- 
+
   def password=(keyphrase)
     @password = keyphrase
     self.salt = User.random_string(10) if self.salt.blank?
     self.password = User.digest(@password, self.salt)
   end
 
-  def self.authenticate(username, keyphrase)
-    current_user = first(:username => username)
+  def self.authenticate(user, keyphrase)
+    current_user = first(:user => user)
     return nil if current_user.nil?
     User.digest(keyphrase, current_user.salt) == current_user.password_hash ? current_user : nil
   end
 
   protected
-  
+
   def self.digest(keyphrase, salt)
     Digest::SHA1.hexdigest(keyphrase + salt)
   end

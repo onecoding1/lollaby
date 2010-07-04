@@ -11,4 +11,5 @@ class Quote
   belongs_to :poster, :model => 'User', :child_key => [ :user_id ]
 
   has n, :ratings
+  
 end
