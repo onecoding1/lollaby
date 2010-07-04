@@ -1,0 +1,9 @@
+0.1
+-Replace HAML with Mustache
+-Use Datamapper
+-SQLite3 as database
+-models:
+--user
+--quote
+--rank
+
