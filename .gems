@@ -1,3 +1,5 @@
 sinatra
-rdiscount
+dm-core
+dm-migrations
 mustache
+dm-sqlite-adapter
