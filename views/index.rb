@@ -4,7 +4,7 @@ class Hai
       def quotes
         Quote.all.map do |quote|
           {
-            :id => quote.id,
+            :quote_id => quote.id,
             :body => quote.body,
             :data => quote.data,
             :source => quote.source
