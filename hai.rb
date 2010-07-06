@@ -37,7 +37,7 @@ class Hai < Sinatra::Base
     :source => params[:source],
     :data => Time.now,
     )
-    
     q.save
+    redirect '/'
   end
 end
