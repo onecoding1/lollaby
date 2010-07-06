@@ -16,7 +16,6 @@ class Hai < Sinatra::Base
     db = "sqlite://#{ENV["PWD"]}/quotes.db"
     DataMapper.setup(:default, db.to_s)
     DataMapper.auto_migrate!
-    set :environment, :production
   end
 
   set :mustache, {
@@ -24,6 +23,8 @@ class Hai < Sinatra::Base
     :templates => 'templates/'
   }
 
+  set :environment, :production
+  
   get '/' do
     @quotes = Quote.all
     @title = "Lulz lives"
