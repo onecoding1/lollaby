@@ -34,7 +34,7 @@ class Hai < Sinatra::Base
   post '/' do
     q = Quote.create(
     :body => params[:body],
-    :source => params[:body],
+    :source => params[:source],
     :data => Time.now,
     )
     
