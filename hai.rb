@@ -39,7 +39,5 @@ class Hai < Sinatra::Base
     )
     
     q.save
-    
-    DataMapper.auto_upgrade!
   end
 end
