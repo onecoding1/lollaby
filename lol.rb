@@ -1,3 +1,0 @@
-user = "coeder"
-pass = "lol"
-
