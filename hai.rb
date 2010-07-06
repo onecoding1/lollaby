@@ -35,7 +35,7 @@ class Hai < Sinatra::Base
     q = Quote.create(
     :body => params[:body],
     :source => params[:source],
-    :data => Time.now,
+    :data => Time.now
     )
     q.save
     redirect '/'
