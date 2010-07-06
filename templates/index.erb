@@ -1,3 +1,4 @@
+<% require 'templates/helper' %>
 <html>
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
@@ -14,9 +15,9 @@
       <% @quotes.each do |quote| %>
         <div class="post">
           <div class="post_left">
-            <span class="year">2010</span><br>
-            <span class="day">10</span><br>
-            <span class="month">FEB</span>
+            <span class="year"><%= quote.date[-4..-1] %></span><br>
+            <span class="day"><%= quote.date[3..4] %></span><br>
+            <span class="month"><% cmonth %><%= month %></span>
           </div>
           <div class="post_right">
             <span class="quote_left">&ldquo;</span><span class="quote"><%= quote.body %></span><span class="quote_right">&rdquo;</span><br>

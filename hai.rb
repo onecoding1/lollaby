@@ -5,7 +5,6 @@ require 'dm-migrations'
 
 
 $:.unshift File.dirname(__FILE__)
-require 'models/user'
 require 'models/quote'
 
 DataMapper.finalize
@@ -15,7 +14,7 @@ class Hai < Sinatra::Base
   db = "sqlite://quotes.db"
   DataMapper.setup(:default, db.to_s)
 
-  set :views, File.dirname(__FILE__) + '/templates'
+  set :views, '/templates'
 
   set :public, 'public/'
 
@@ -30,12 +29,12 @@ class Hai < Sinatra::Base
   get '/new' do
     erb :new
   end
-  
+
   post '/' do
     q = Quote.create(
     :body => params[:body],
     :source => params[:source],
-    :data => Time.now
+    :date => Time.now.strftime("%m/%d/%Y")
     )
     q.save
     redirect '/'
