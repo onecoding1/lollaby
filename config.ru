@@ -4,8 +4,8 @@ require 'hai'
 use Rack::ShowExceptions
 RACK_ENV="production"
 
-use Rack::Auth::Basic do |password|
-  [password] == "nogoaway"
+use Rack::Auth::Basic do |username, password|
+  [username, password] == ["coeder", "nogoaway"]
 end
 
 
