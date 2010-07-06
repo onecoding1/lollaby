@@ -22,7 +22,7 @@ class Hai < Sinatra::Base
 
     def authorized?
       @auth ||=  Rack::Auth::Basic::Request.new(request.env)
-      @auth.provided? && @auth.basic? && @auth.credentials && @auth.credentials == ['coeder', 'nogoaway']
+      @auth.provided? && @auth.basic? && @auth.credentials && @auth.credentials == ['youfuckin', 'idiot']
     end
 
   end
