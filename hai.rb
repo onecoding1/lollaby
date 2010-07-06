@@ -22,6 +22,7 @@ class Hai < Sinatra::Base
     :views     => 'views/',
     :templates => 'templates/'
   }
+  set :public, 'public/'
 
   set :environment, :production
   
