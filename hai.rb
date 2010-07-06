@@ -14,18 +14,32 @@ class Hai < Sinatra::Base
 
   db = "sqlite://quotes.db"
   DataMapper.setup(:default, db.to_s)
-  DataMapper.auto_upgrade!
-
+  DataMapper.auto_migrate!
   set :views, File.dirname(__FILE__) + '/templates'
 
   set :public, 'public/'
 
   set :environment, :production
-  
+
   get '/' do
     @quotes = Quote.all
     @title = "Lulz lives"
     erb :index
   end
 
+  get '/new' do
+    erb :new
+  end
+  
+  post '/' do
+    q = Quote.create(
+    :body => params[:body],
+    :source => params[:body],
+    :data => Time.now,
+    )
+    
+    q.save
+    
+    DataMapper.auto_upgrade!
+  end
 end
