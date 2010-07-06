@@ -1,42 +1,31 @@
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en"> 
-<head> 
-  <meta name="color:Background" content="#fff"/> 
-  <meta name="color:Title" content="#222"/> 
-  <meta name="color:Description" content="#999"/> 
-  <meta name="color:Text" content="#404040"/> 
-  <meta name="color:Link" content="#c03030"/> 
-  <meta name="color:Date Border" content="#cccccc"/> 
-  <meta name="color:Post Footer" content="#999999"/> 
-  <meta name="font:Body" content="Georgia, serif"> 
-  <meta name="image:Background" content=""> 
-  <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/> 
-  <title><% title = "lulz lives"%><%= title %></title>
-  <link href="/css/lightweight.css" rel="stylesheet" type="text/css">
-</head>
-  
-  <body>
-    <div id="contain">     
-      <div id="content"> 
-        <h1><a href="http://lulz.heroku.com" title="/"><%= title %></a></h1>
-        <h2><% description = "lulz (cit.)" %><%= description %><h2>
-      </div>
-      <div id="posts" class="autopagerize_page_element"> 
-        <% @quotes.each do |quote| %>
-        <div class="post"> 
-          <div class="quote"> 
-            <span class="words"><%= quote.body %></span> 
-            <span class="source"><em><%= quote.source %></em></span> 
-          </div> 
-          <div class="post-footer"> 
-            <span class="when">Posted at <%= quote.data %></span> 
- 
-            <a href="/<%= quote.id %>" class="permalink">Permalink &#<%= quote.data %>;</a> 
-          </div> 
-          <br clear="all"/> 
-        </div> <!-- end single post --> 
-     <% end %>
-           </div> 
-    </div> <!-- end content div --> 
-    </div> 
-</html>
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title><% title = "lulz lives"%><%= title %></title>
+    <link href="/css/miniblu.css" rel="stylesheet" type="text/css">
+  </head>
 
+  <body>
+    <div id="container">
+      <div class="center" style="background-color:#B7DBFF;">
+        <a href="http://lulz.heroku.com" title="/" class="logo"><%= title %></a>
+      </div>
+
+      <% @quotes.each do |quote| %>
+
+        <div class="post">
+          <div class="post_left">
+            <span class="year">2010</span><br>
+            <span class="day">10</span><br>
+            <span class="month">FEB</span>
+          </div>
+          <div class="post_right">
+            <span class="quote_left">&ldquo;</span><span class="quote"><%= quote.body %></span><span class="quote_right">&rdquo;</span><br>
+            <span class="author"><%= quote.source %></span>
+          </div>
+        </div>
+        <div class="clear"></div>
+    <% end %>
+ </div> 
+</body> 
+</html>
