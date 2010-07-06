@@ -1,32 +1,49 @@
-
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <title><% title = "lulz lives"%><%= title %></title>
-    
-    <link href="/css/lightweight.css" rel="stylesheet" type="text/css">
-
-
-<meta name="description" content="Description">
-  </head><body>
-    <div class="wrapper">
-      <div class="header">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en"> 
+<head> 
+  <meta name="color:Background" content="#fff"/> 
+  <meta name="color:Title" content="#222"/> 
+  <meta name="color:Description" content="#999"/> 
+  <meta name="color:Text" content="#404040"/> 
+  <meta name="color:Link" content="#c03030"/> 
+  <meta name="color:Date Border" content="#cccccc"/> 
+  <meta name="color:Post Footer" content="#999999"/> 
+  <meta name="font:Body" content="Georgia, serif"> 
+  <meta name="image:Background" content=""> 
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/> 
+  <title><% title = "lulz lives"%><%= title %></title>
+  <link href="/css/lightweight.css" rel="stylesheet" type="text/css">
+</head>
+  
+  <body>
+    <div id="contain">     
+      <div id="content"> 
         <h1><a href="http://lulz.heroku.com" title="/"><%= title %></a></h1>
-            <p style="display: none; ">
-            
-            </p>
-        <p><% description = "lulz (cit.)" %><%= description %></p>
+        <h2><% description = "lulz (cit.)" %><%= description %><h2>
       </div>
-      <div class="main">
+      <div id="posts" class="autopagerize_page_element"> 
+
+        <div class="post"> 
+          <div class="quote"> 
+            <span class="words"><%= quote.body %></span> 
+            <span class="source"><em><%= quote.source %></em></span> 
+          </div> 
+          <div class="post-footer"> 
+            <span class="when">Posted at <%= quote.data %></span> 
+ 
+            <a href="/<%= quote.id %>" class="permalink">Permalink &#<%= quote.data %>;</a> 
+          </div> 
+          <br clear="all"/> 
+        </div> <!-- end single post --> 
 
         <% @quotes.each do |quote| %>
 
         <div class="post">
           <div class="datetime">
-            <%= quote.data %><br>
+            <br>
             <a href="quotes/<% quote.id %>"></a><br>
           </div>
           <p><span class="short_quote"><%= quote.body %></span></p>
-          <p>—<%= quote.source %></p>
+          <p>—</p>
         </div>
       </div>
      <% end %>
