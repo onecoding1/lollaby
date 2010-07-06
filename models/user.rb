@@ -1,6 +1,3 @@
-require 'dm-core'
-require 'dm-validations'
-
 class User
   include DataMapper::Resource
 
@@ -8,7 +5,7 @@ class User
   property :user, String, :required => true, :unique => true
   property :password, String, :required => true
   property :salt, String, :default => ''
-  property :email, String, :default => 'user@example.com', :format => :email_address
+  property :email, String, :default => 'user@example.com'
 
   attr_accessor :password
 
@@ -38,3 +35,5 @@ class User
   end
 
 end
+DataMapper.finalize
+

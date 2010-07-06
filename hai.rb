@@ -1,27 +1,22 @@
 require 'sinatra/base'
-require 'mustache/sinatra'
+require 'erb'
 require 'dm-core'
 require 'dm-migrations'
 
 
 $:.unshift File.dirname(__FILE__)
 require 'models/user'
-require 'models/rank'
 require 'models/quote'
 
+DataMapper.finalize
+
 class Hai < Sinatra::Base
-  register Mustache::Sinatra
 
-  configure do
-    db = "sqlite://quotes.db"
-    DataMapper.setup(:default, db.to_s)
-    DataMapper.auto_migrate!
-  end
+  db = "sqlite://#{ENV["PWD"]}/quotes.db"
+  DataMapper.setup(:default, db.to_s)
 
-  set :mustache, {
-    :views     => 'views/',
-    :templates => 'templates/'
-  }
+  set :views, File.dirname(__FILE__) + '/templates'
+
   set :public, 'public/'
 
   set :environment, :production
@@ -29,7 +24,7 @@ class Hai < Sinatra::Base
   get '/' do
     @quotes = Quote.all
     @title = "Lulz lives"
-    mustache :layout
+    erb :index
   end
 
 end
