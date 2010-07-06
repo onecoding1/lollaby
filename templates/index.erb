@@ -1,0 +1,34 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title><% title = "lulz lives"%><%= title %></title>
+    
+    <link href="/css/lightweight.css" rel="stylesheet" type="text/css">
+
+
+<meta name="description" content="Description">
+  </head><body>
+    <div class="wrapper">
+      <div class="header">
+        <h1><a href="http://lulz.heroku.com" title="/"><%= title %></a></h1>
+            <p style="display: none; ">
+            
+            </p>
+        <p><% description = "lulz (cit.)" %><%= description %></p>
+      </div>
+      <div class="main">
+
+        <% @quotes.each do |quote| %>
+
+        <div class="post">
+          <div class="datetime">
+            <%= quote.data %><br>
+            <a href="quotes/"></a><br>
+          </div>
+          <p><span class="short_quote"><%= quote.body %></span></p>
+          <p>—<%= quote.source %></p>
+        </div>
+      </div>
+     <% end %>
+</html>
+
