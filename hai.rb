@@ -14,6 +14,7 @@ class Hai < Sinatra::Base
 
   db = "sqlite://quotes.db"
   DataMapper.setup(:default, db.to_s)
+  DataMapper.auto_upgrade!
 
   set :views, File.dirname(__FILE__) + '/templates'
 
