@@ -14,7 +14,7 @@ class Hai < Sinatra::Base
   db = "sqlite://quotes.db"
   DataMapper.setup(:default, db.to_s)
 
-  set :views, '/templates'
+  set :views, 'templates/'
 
   set :public, 'public/'
 
