@@ -38,7 +38,6 @@ class Hai < Sinatra::Base
     :data => Time.now,
     )
     q.save
-    DataMapper.auto_upgrade!
     redirect '/'
   end
 end
