@@ -13,7 +13,7 @@ class Hai < Sinatra::Base
   register Mustache::Sinatra
 
   configure do
-    db = "sqlite://#{ENV["PWD"]}/quotes.db"
+    db = "sqlite://quotes.db"
     DataMapper.setup(:default, db.to_s)
     DataMapper.auto_migrate!
   end
