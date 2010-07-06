@@ -11,7 +11,6 @@ require 'models/quote'
 
 class Hai < Sinatra::Base
   register Mustache::Sinatra
-  require 'views/layout'
 
   configure do
     db = "sqlite://#{ENV["PWD"]}/quotes.db"
@@ -27,7 +26,7 @@ class Hai < Sinatra::Base
   get '/' do
     @quotes = Quote.all
     @title = "Lulz lives"
-    mustache :index
+    mustache :layout
   end
 
 end
