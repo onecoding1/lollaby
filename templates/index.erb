@@ -21,7 +21,7 @@
         <h2><% description = "lulz (cit.)" %><%= description %><h2>
       </div>
       <div id="posts" class="autopagerize_page_element"> 
-
+        <% @quotes.each do |quote| %>
         <div class="post"> 
           <div class="quote"> 
             <span class="words"><%= quote.body %></span> 
@@ -34,18 +34,6 @@
           </div> 
           <br clear="all"/> 
         </div> <!-- end single post --> 
-
-        <% @quotes.each do |quote| %>
-
-        <div class="post">
-          <div class="datetime">
-            <br>
-            <a href="quotes/<% quote.id %>"></a><br>
-          </div>
-          <p><span class="short_quote"><%= quote.body %></span></p>
-          <p>—</p>
-        </div>
-      </div>
      <% end %>
 </html>
 
